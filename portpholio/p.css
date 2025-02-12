@@ -1,0 +1,504 @@
+/* Importing Poppins font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* General Reset for all elements */
+* {
+    margin: 0;
+
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Body styling (can be expanded further) */
+body {
+    /* You can add more styles here if needed */
+    background:black;
+   
+
+
+}
+a{
+    color: #fff;
+    text-decoration: none;
+
+}
+.navbar{
+    position:fixed;
+    left: 0;
+    top:0;
+    width: 100%;
+    padding: 25px 9% ;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100 ;
+}
+.navbar .logo{
+    font-size: 30px;
+    font-weight: 700;
+
+
+}
+.navbar ul{
+    display: flex;
+    
+}
+.navbar ul li {
+    list-style: none;
+    margin-left: 35px;
+
+}
+.navbar ul li a{
+    font-size: 20px;
+    font-weight: 500;
+    transition: .5s;
+}
+.navbar ul li:hover a,
+.navbar ul li.active a{
+    color: #7cf03d;
+}
+.home{
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    padding: 60px 9% 0;
+    color: #fff;
+
+
+}
+.home-info h1{
+    font-size: 55px;
+
+}
+.home-info h2{
+    display: inline-block;
+    font-size: 32px;
+    margin-top: -10px;
+    
+
+}
+.home-info h2 span {
+    position: relative;
+    display: inline-block;
+    color: transparent;
+    -webkit-text-stroke: 0.7px #7cf03d;
+    animation: display-text 16s linear infinite;
+    animation-delay: calc(-4s * var(--i));
+   /* opacity: 0; /* Initial state: hidden */
+}
+@keyframes fill-text{
+    10%,
+    100%{
+        width: 0;
+
+    }
+    70%,
+    90%{
+
+        width: 100%;
+
+    }
+}
+
+
+@keyframes display-text {
+    
+    25%, 100% {
+        display: none; /* Text is visible at 25% and 75% of the animation cycle */
+    }
+}
+
+.home-info h2 span::before{
+    content: attr(data-text);
+    position: absolute;
+    width: 0;
+    border-right: 2px solid #7cf03d;
+    color: #7cf03d;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: fill-text 4s linear infinite;
+
+
+}
+.home-info p{
+    font-size: 16px;
+    margin: 10px 0 25;
+    
+
+
+}
+.home-info .btn-sci{
+    display: flex;
+    align-items: center;
+
+}.btn{
+    display: inline-block;
+    padding: 10px 30px;
+    background: #7cf03d;
+    border: 2px solid #7cf03d;
+    border-radius: 40px;
+    box-shadow: 0 0 10px #7cf03d;
+    font-size: 16px;
+    color: black;
+    font-weight: 600;
+    transition: .5s;
+
+}
+.btn:hover{
+    background: transparent;
+    color: #7cf03d;
+    box-shadow: none;
+
+
+}
+.home-info .btn-sci .sci{
+    margin-left: 20px;
+
+}
+.home-info .btn-sci .sci a{
+    display: inline-flex;
+    padding: 8px;
+    border: 2px solid #7cf03d;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #7cf03d;
+    margin: 0 8px;
+    transition: .5s;
+
+
+}
+.home-info .btn-sci .sci a:hover{
+    background: #7cf03d;
+    color: black;
+    box-shadow: 0 0 10px #7cf03d;
+}
+.home-img .img-box{
+    position: relative;
+    width: 32vw;
+    height: 32vw;
+
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+
+
+}
+.home-img .img-box::before,
+.home-img .img-box::after{
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: conic-gradient(transparent,transparent,transparent,#7cf03d);
+    transform:rotate(0deg);
+    animation: rotate-border 10s linear infinite;
+
+
+
+}
+.home-img .img-box::after{
+    animation-delay: -5s;
+}
+@keyframes rotate-border{
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.home-img .img-box .img-item{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: .1px solid black;
+    background:black;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    overflow: hidden;
+
+}
+.home-img .img-box .img-item img{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    mix-blend-mode:lighten;
+
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.second{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+
+}
+.second .box{
+    width: 300px;
+    height: 300px;
+    background: #7cf03d;
+}
+
+/* Skills Section */
+.skills {
+    padding: 80px 5%;
+    background: black;
+    color: #fff;
+    text-align: center;
+    height: 100vh;
+    position: relative;
+}
+
+
+.skills-info h1 {
+    font-size: 40px;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeIn 2s 0.5s forwards;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+}
+
+.skills-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.skill-item {
+    width: 25%;
+    min-width: 220px;
+    margin-bottom: 30px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 2s 1s forwards;
+    padding: 20px;
+    background: black;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.skill-item i {
+    font-size: 50px;
+    margin-bottom: 10px;
+    color: #f1f1f1;
+}
+
+.skill-item h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.progress-bar {
+    height: 10px;
+    background: #7cf03d;
+    border-radius: 5px;
+    width: 0;
+    animation: progress 2s forwards;
+    margin-top: 10px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes progress {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .skills-list {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .skill-item {
+        width: 80%;
+    }
+
+    .skills-info h1 {
+        font-size: 32px;
+    }
+
+    .skill-item i {
+        font-size: 45px;
+    }
+
+    .skill-item h3 {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-info h1 {
+        font-size: 28px;
+    }
+
+    .skill-item i {
+        font-size: 40px;
+    }
+
+    .skill-item h3 {
+        font-size: 16px;
+    }
+}
+
+
+/* About Section */
+.about {
+    background: #000; /* Solid black background */
+    color: #fff;
+    text-align: center;
+    padding: 80px 5%;
+    position: relative;
+    height: 100vh;
+    overflow: hidden; /* Prevents any overflowing elements */
+}
+
+/* Container for centering the content */
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    z-index: 1;
+    position: relative;
+}
+
+/* Info box styling */
+.about-info {
+    width: 100%;
+    max-width: 900px;
+    padding: 40px;
+    background-color: rgba(0, 0, 0, 0.85); /* Slightly transparent black background */
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Heading Style */
+.about-info h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 2px;
+    color: #7cf03d; /* Accent color for the heading */
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    animation: slideUp 1s ease-in-out;
+}
+
+/* Paragraph Style */
+.about-info p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 20px 0;
+    color: #ccc; /* Light gray color for the paragraph */
+    opacity: 0;
+    animation: fadeIn 2s 0.5s forwards;
+    font-family: 'Arial', sans-serif;
+    padding: 0 20px;
+}
+
+/* Background Decorations (Subtle effect) */
+.about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1)); /* Soft gradient */
+    z-index: 0;
+    opacity: 0.5;
+    animation: shimmer 5s linear infinite; /* Subtle shimmering effect */
+}
+
+/* Animations for smooth effects */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .about-info {
+        width: 90%;
+    }
+
+    .about-info h1 {
+        font-size: 36px;
+    }
+
+    .about-info p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-info h1 {
+        font-size: 28px;
+    }
+
+    .about-info p {
+        font-size: 14px;
+    }
+}
+

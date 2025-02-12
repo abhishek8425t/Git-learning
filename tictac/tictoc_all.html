@@ -5,128 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
     <style>
-        body{
-    margin: 0px;
-    padding: 0px;
-    background: linear-gradient(135deg, #6a11cb,pink ,yellow);
-    height: 100vh;
-    
-    font-family: Arial, Helvetica, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: white;
+        body {
+            margin: 0px;
+            padding: 0px;
+            background: linear-gradient(135deg, #6a11cb, pink, yellow);
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .header {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 120px);
+            grid-template-rows: repeat(3, 120px);
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .cell {
+            color: #333;
+            background-color: white;
+            width: 120px;
+            height: 120px;
+            border: 2px #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .cell:hover {
+            background-color: #f0f0f0;
+        }
+        .cell.taken {
+            pointer-events: none;
+            color: #555;
+        }
+        .winning-message {
+            color: #333;
+            margin-top: 20px;
+            font-size: 1.5rem;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        .abhi {
+            font-size: 18px;
+            color: red;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            padding: 10px;
+            background-color: #ecf0f1;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        @media(max-width: 500px) {
+            .board {
+                grid-template-columns: repeat(3, 100px);
+                grid-template-rows: repeat(3, 100px);
+            }
+            .cell {
+                width: 100px;
+                height: 100px;
+            }
+            button {
+                font-size: 1 rem;
+                padding: 10px 15px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .abhi {
+                font-size: 1.5rem;
+            }
+        }
 
+        /* Night mode styles */
+        .night-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .night-mode .container {
+            background-color: #333333;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+        .night-mode .header,
+        .night-mode .winning-message {
+            color: #ffffff;
+        }
+        .night-mode .cell {
+            background-color: #444444;
+            color: #ffffff;
+            border: 2px solid #666;
+        }
+        .night-mode .cell:hover {
+            background-color: #555555;
+        }
+        .night-mode button {
+            background-color: #28a745;
+        }
+        .night-mode button:hover {
+            background-color: #218838;
+        }
 
-}
-.container{
-    text-align: center;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    width: 400px;
-    min-height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+        /* Styling the slider */
+        .slider-container {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+            color: #333;
+        }
 
-}
-.header{
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 20px;
-}
-.board{
-    display: grid;
-    grid-template-columns: repeat(3,120px);
-    grid-template-rows: repeat(3,120px);
-    gap: 10px;
-    margin-bottom: 30px;
+        .slider-label {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
 
-}
-.cell{
-    color: #333;
-    background-color: white;
-    width: 120px;
-    height: 120px;
-    border: 2px #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+        .slider {
+            -webkit-appearance: none;
+            width: 50px;
+            height: 25px;
+            border-radius: 25px;
+            background: #ccc;
+            outline: none;
+            transition: background 0.3s;
+        }
 
-}
-.cell:hover{
-    background-color: #f0f0f0
-}
-.cell.taken {
-    pointer-events: none;
-    color: #555;
-}
-.winning-message{
-    color: #333;
-    margin-top: 20px;
-    font-size: 1.5rem;
-}
-button {
-    padding: 12px 20px;
-    font-size: 1.1rem;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-button:hover{
-    background-color: #218838;
-}
-button:active {
-    transform: scale(0.98);
+        .slider:checked {
+            background: #28a745;
+        }
 
-}
-.abhi{
-    font-size: 18px; 
-    color: red; 
-    text-align: center; 
-    font-family: 'Arial', sans-serif; 
-    padding: 10px; 
-    background-color: #ecf0f1; 
-    border-radius: 10px; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        
-}
-@media(max-width: 500px){
-    .board{
-        grid-template-columns: repeat(3,100px);
-        grid-template-rows: repeat(3,100px);
+        .slider:before {
+            content: '';
+            position: absolute;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: white;
+            transition: 0.4s;
+        }
 
-
-    }
-    .cell{
-        width: 100px;
-        height: 100px;
-
-    }
-    button{
-        font-size: 1 rem;
-        padding: 10px 15px;
-
-    }
-    h1{
-        font-size: 2rem;
-    }
-    .abhi{
-        font-size: 1.5rem;
-
-    }
-}
+        .slider:checked:before {
+            transform: translateX(25px);
+        }
     </style>
 </head>
 <body>
@@ -146,82 +202,98 @@ button:active {
         <button class="restartButton">Restart Game</button>
         <p class="winning-message" id="winningMessage"></p>
         <p class="abhi">
-            Developed by: <span style="font-weight: bold; color: #2c3e50;">Abhishek Patel  </span>
+            Developed by: <span style="font-weight: bold; color: #2c3e50;">Abhishek Patel</span>
         </p>
-        
+
+        <!-- Night Mode Slider -->
+        <div class="slider-container">
+            <span class="slider-label">Night Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="nightModeSlider" class="slider">
+            </label>
+        </div>
     </div>
-    <script >
+
+    <script>
         let turn = "O";
-let total_turn = 0;
+        let total_turn = 0;
 
-const winner = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
-                [0, 3, 6], [1, 4, 7], [2, 5, 8],
-                [0, 4, 8], [2, 4, 6]];
+        const winner = [[0, 1, 2], [3, 4, 5], [6, 7, 8],
+                        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                        [0, 4, 8], [2, 4, 6]];
 
-let tictactoe = new Array(9).fill("E");
+        let tictactoe = new Array(9).fill("E");
 
-function checkwinner() {
-    for (let [index0, index1, index2] of winner) {
-        if (tictactoe[index0] !== "E" && tictactoe[index0] === tictactoe[index1] && tictactoe[index1] === tictactoe[index2])
-            return 1;
-    }
-    return 0;
-}
-
-const board = document.querySelector('.board');
-
-const boardLogic = function (event) {
-    if (tictactoe[event.target.id] === "E") {
-        total_turn++;
-
-        if (turn === "O") {
-            event.target.innerHTML = "O";
-            tictactoe[event.target.id] = "O";
-            if (checkwinner()) {
-                document.getElementById('winningMessage').innerText = "Winner is: O";
-                board.removeEventListener('click', boardLogic);
-                return;
+        function checkwinner() {
+            for (let [index0, index1, index2] of winner) {
+                if (tictactoe[index0] !== "E" && tictactoe[index0] === tictactoe[index1] && tictactoe[index1] === tictactoe[index2])
+                    return 1;
             }
-
-            turn = "X";
-        } else {
-            event.target.innerHTML = "X";
-            tictactoe[event.target.id] = 'X';
-            if (checkwinner()) {
-                document.getElementById('winningMessage').innerText = "Winner is: X";
-                board.removeEventListener('click', boardLogic);
-                return;
-            }
-
-            turn = "O";
+            return 0;
         }
-    }
 
-    if (total_turn === 9) {
-        document.getElementById('winningMessage').innerText = "Match is Draw";
-    }
-};
+        const board = document.querySelector('.board');
 
-board.addEventListener('click', boardLogic);
+        const boardLogic = function (event) {
+            if (tictactoe[event.target.id] === "E") {
+                total_turn++;
 
-// Correctly target the restart button by class
-const Restart = document.querySelector(".restartButton"); 
-Restart.addEventListener('click', () => {
-    turn = "O";
-    const cell = document.getElementsByClassName('cell'); // Fixed typo: 'ceil' -> 'cell'
-    Array.from(cell).forEach((element) => {
-        element.innerHTML = ""; // Clear the content in each cell
-    });
+                if (turn === "O") {
+                    event.target.innerHTML = "O";
+                    tictactoe[event.target.id] = "O";
+                    if (checkwinner()) {
+                        document.getElementById('winningMessage').innerText = "Winner is: O";
+                        board.removeEventListener('click', boardLogic);
+                        return;
+                    }
 
-    document.getElementById('winningMessage').innerText = "";
-    total_turn = 0;
-    tictactoe = new Array(9).fill("E");
+                    turn = "X";
+                } else {
+                    event.target.innerHTML = "X";
+                    tictactoe[event.target.id] = 'X';
+                    if (checkwinner()) {
+                        document.getElementById('winningMessage').innerText = "Winner is: X";
+                        board.removeEventListener('click', boardLogic);
+                        return;
+                    }
 
-    // Remove the event listener for the board and add it again
-    board.removeEventListener('click', boardLogic);
-    board.addEventListener('click', boardLogic);
-});
+                    turn = "O";
+                }
+            }
 
+            if (total_turn === 9) {
+                document.getElementById('winningMessage').innerText = "Match is Draw";
+            }
+        };
+
+        board.addEventListener('click', boardLogic);
+
+        const Restart = document.querySelector(".restartButton"); 
+        Restart.addEventListener('click', () => {
+            turn = "O";
+            const cell = document.getElementsByClassName('cell'); // Fixed typo: 'ceil' -> 'cell'
+            Array.from(cell).forEach((element) => {
+                element.innerHTML = ""; // Clear the content in each cell
+            });
+
+            document.getElementById('winningMessage').innerText = "";
+            total_turn = 0;
+            tictactoe = new Array(9).fill("E");
+
+            // Remove the event listener for the board and add it again
+            board.removeEventListener('click', boardLogic);
+            board.addEventListener('click', boardLogic);
+        });
+
+        // Night Mode Slider
+        const nightModeSlider = document.getElementById('nightModeSlider');
+        nightModeSlider.addEventListener('change', function () {
+            if (nightModeSlider.checked) {
+                document.body.classList.add('night-mode');
+            } else {
+                document.body.classList.remove('night-mode');
+            }
+        });
     </script>
 </body>
 </html>

@@ -68,3 +68,4 @@ Restart.addEventListener('click', () => {
     board.removeEventListener('click', boardLogic);
     board.addEventListener('click', boardLogic);
 });
+// Select the body and the checkbox (assuming the checkbox has an id of 'checked')
